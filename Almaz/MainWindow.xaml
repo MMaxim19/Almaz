@@ -1,0 +1,28 @@
+﻿<Window x:Class="Almaz.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Almaz"
+        mc:Ignorable="d"
+        Title="Заказы" Height="450" Width="800">
+    <Grid>
+        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,15,0,202" x:Name="ZakazTable" AutoGenerateColumns="False" Background="{x:Null}" BorderBrush="{x:Null}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID_изготовления}"/>
+                <DataGridTextColumn Header="Изделие" Binding="{Binding Изделия.Тип_изделия}" Width="220"/>
+                <DataGridTextColumn Header="Заказчики" Binding="{Binding Заказчики.ФИО_заказчика}" Width="220"/>
+                <DataGridTextColumn Header="Ювелир" Binding="{Binding Ювелир1.ФИО_ювелира}" Width="205"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Цена}" Width="50"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Заказчики" HorizontalAlignment="Left" Margin="10,265,0,0" VerticalAlignment="Top" Height="32" Width="96" Click="WindowClient"/>
+        <Label Content="Таблицы" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top"/>
+        <Button Content="Ювелиры" HorizontalAlignment="Left" Margin="111,265,0,0" VerticalAlignment="Top" Height="32" Width="96" Click="WindowMaster"/>
+        <Button Content="Изделия" HorizontalAlignment="Left" Margin="212,265,0,0" VerticalAlignment="Top" Height="32" Width="96" Click="WindowProduct"/>
+        <Image Margin="565,297,10,0" Source="/Логотип.jpg" Stretch="Fill"/>
+        <Label Content="Функционал" HorizontalAlignment="Left" Margin="10,303,0,0" VerticalAlignment="Top"/>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="10,334,0,0" VerticalAlignment="Top" Height="32" Width="96" Click="AddOrder"/>
+        <TextBox x:Name="Filter" HorizontalAlignment="Left" Margin="10,371,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="298" TextChanged="Filter_TextChanged"/>
+    </Grid>
+</Window>

@@ -1,0 +1,18 @@
+﻿<Window x:Class="Almaz.MasterWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Almaz"
+        mc:Ignorable="d"
+        Title="MasterWin" Height="160" Width="391">
+    <Grid>
+        <Label Content="ФИО" HorizontalAlignment="Left" Margin="20,29,0,0" VerticalAlignment="Top"/>
+        <TextBox Margin="128,33,13,0" TextWrapping="Wrap" Text="{Binding ФИО_ювелира}" VerticalAlignment="Top"/>
+        <Label Content="Разряд" HorizontalAlignment="Left" Margin="20,52,0,0" VerticalAlignment="Top"/>
+        <TextBox Margin="128,56,13,0" TextWrapping="Wrap" Text="{Binding Разряд}" VerticalAlignment="Top"/>
+        <Button Content="Добавить" Margin="19,79,0,0" Click="Add" HorizontalAlignment="Left" Width="96" Height="32" VerticalAlignment="Top"/>
+        <Button Content="Отменить" Margin="282,79,13,0" Click="Back" Height="32" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

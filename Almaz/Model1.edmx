@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище AlmazModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Заказчики">
+          <Key>
+            <PropertyRef Name="ID_заказчик" />
+          </Key>
+          <Property Name="ID_заказчик" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ФИО_заказчика" Type="nvarchar" MaxLength="50" />
+          <Property Name="Номер_телефона" Type="nvarchar" MaxLength="50" />
+          <Property Name="Адрес" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Изготовление">
+          <Key>
+            <PropertyRef Name="ID_изготовления" />
+          </Key>
+          <Property Name="ID_изготовления" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Изделие" Type="int" />
+          <Property Name="Заказчик" Type="int" />
+          <Property Name="Ювелир" Type="int" />
+          <Property Name="Цена" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Изделия">
+          <Key>
+            <PropertyRef Name="ID_изделия" />
+          </Key>
+          <Property Name="ID_изделия" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Тип_изделия" Type="nvarchar" MaxLength="100" />
+          <Property Name="Металл" Type="int" />
+        </EntityType>
+        <EntityType Name="Металл">
+          <Key>
+            <PropertyRef Name="ID_металл" />
+          </Key>
+          <Property Name="ID_металл" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Метал" Type="nvarchar" MaxLength="50" />
+          <Property Name="Цена за грамм" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Ювелир">
+          <Key>
+            <PropertyRef Name="ID_ювелира" />
+          </Key>
+          <Property Name="ID_ювелира" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ФИО_ювелира" Type="nvarchar" MaxLength="50" />
+          <Property Name="Разряд" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Изготовление_Заказчик1">
+          <End Role="Заказчики" Type="Self.Заказчики" Multiplicity="0..1" />
+          <End Role="Изготовление" Type="Self.Изготовление" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказчики">
+              <PropertyRef Name="ID_заказчик" />
+            </Principal>
+            <Dependent Role="Изготовление">
+              <PropertyRef Name="Заказчик" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Изготовление_Изделия">
+          <End Role="Изделия" Type="Self.Изделия" Multiplicity="0..1" />
+          <End Role="Изготовление" Type="Self.Изготовление" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Изделия">
+              <PropertyRef Name="ID_изделия" />
+            </Principal>
+            <Dependent Role="Изготовление">
+              <PropertyRef Name="Изделие" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Изготовление_Ювелир">
+          <End Role="Ювелир" Type="Self.Ювелир" Multiplicity="0..1" />
+          <End Role="Изготовление" Type="Self.Изготовление" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ювелир">
+              <PropertyRef Name="ID_ювелира" />
+            </Principal>
+            <Dependent Role="Изготовление">
+              <PropertyRef Name="Ювелир" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Изделия_Металл">
+          <End Role="Металл" Type="Self.Металл" Multiplicity="0..1" />
+          <End Role="Изделия" Type="Self.Изделия" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Металл">
+              <PropertyRef Name="ID_металл" />
+            </Principal>
+            <Dependent Role="Изделия">
+              <PropertyRef Name="Металл" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище AlmazModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Заказчики" EntityType="Self.Заказчики" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Изготовление" EntityType="Self.Изготовление" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Изделия" EntityType="Self.Изделия" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Металл" EntityType="Self.Металл" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ювелир" EntityType="Self.Ювелир" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Изготовление_Заказчик1" Association="Self.FK_Изготовление_Заказчик1">
+            <End Role="Заказчики" EntitySet="Заказчики" />
+            <End Role="Изготовление" EntitySet="Изготовление" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Изготовление_Изделия" Association="Self.FK_Изготовление_Изделия">
+            <End Role="Изделия" EntitySet="Изделия" />
+            <End Role="Изготовление" EntitySet="Изготовление" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Изготовление_Ювелир" Association="Self.FK_Изготовление_Ювелир">
+            <End Role="Ювелир" EntitySet="Ювелир" />
+            <End Role="Изготовление" EntitySet="Изготовление" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Изделия_Металл" Association="Self.FK_Изделия_Металл">
+            <End Role="Металл" EntitySet="Металл" />
+            <End Role="Изделия" EntitySet="Изделия" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AlmazModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Заказчики">
+          <Key>
+            <PropertyRef Name="ID_заказчик" />
+          </Key>
+          <Property Name="ID_заказчик" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ФИО_заказчика" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Номер_телефона" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Адрес" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Изготовление" Relationship="Self.FK_Изготовление_Заказчик1" FromRole="Заказчики" ToRole="Изготовление" />
+        </EntityType>
+        <EntityType Name="Изготовление">
+          <Key>
+            <PropertyRef Name="ID_изготовления" />
+          </Key>
+          <Property Name="ID_изготовления" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Изделие" Type="Int32" />
+          <Property Name="Заказчик" Type="Int32" />
+          <Property Name="Ювелир" Type="Int32" />
+          <Property Name="Цена" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Заказчики" Relationship="Self.FK_Изготовление_Заказчик1" FromRole="Изготовление" ToRole="Заказчики" />
+          <NavigationProperty Name="Изделия" Relationship="Self.FK_Изготовление_Изделия" FromRole="Изготовление" ToRole="Изделия" />
+          <NavigationProperty Name="Ювелир1" Relationship="Self.FK_Изготовление_Ювелир" FromRole="Изготовление" ToRole="Ювелир" />
+        </EntityType>
+        <EntityType Name="Изделия">
+          <Key>
+            <PropertyRef Name="ID_изделия" />
+          </Key>
+          <Property Name="ID_изделия" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Тип_изделия" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Металл" Type="Int32" />
+          <NavigationProperty Name="Изготовление" Relationship="Self.FK_Изготовление_Изделия" FromRole="Изделия" ToRole="Изготовление" />
+          <NavigationProperty Name="Металл1" Relationship="Self.FK_Изделия_Металл" FromRole="Изделия" ToRole="Металл" />
+        </EntityType>
+        <EntityType Name="Металл">
+          <Key>
+            <PropertyRef Name="ID_металл" />
+          </Key>
+          <Property Name="ID_металл" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Метал" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Цена_за_грамм" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Изделия" Relationship="Self.FK_Изделия_Металл" FromRole="Металл" ToRole="Изделия" />
+        </EntityType>
+        <EntityType Name="Ювелир">
+          <Key>
+            <PropertyRef Name="ID_ювелира" />
+          </Key>
+          <Property Name="ID_ювелира" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ФИО_ювелира" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Разряд" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Изготовление" Relationship="Self.FK_Изготовление_Ювелир" FromRole="Ювелир" ToRole="Изготовление" />
+        </EntityType>
+        <Association Name="FK_Изготовление_Заказчик1">
+          <End Role="Заказчики" Type="Self.Заказчики" Multiplicity="0..1" />
+          <End Role="Изготовление" Type="Self.Изготовление" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Заказчики">
+              <PropertyRef Name="ID_заказчик" />
+            </Principal>
+            <Dependent Role="Изготовление">
+              <PropertyRef Name="Заказчик" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Изготовление_Изделия">
+          <End Role="Изделия" Type="Self.Изделия" Multiplicity="0..1" />
+          <End Role="Изготовление" Type="Self.Изготовление" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Изделия">
+              <PropertyRef Name="ID_изделия" />
+            </Principal>
+            <Dependent Role="Изготовление">
+              <PropertyRef Name="Изделие" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Изготовление_Ювелир">
+          <End Role="Ювелир" Type="Self.Ювелир" Multiplicity="0..1" />
+          <End Role="Изготовление" Type="Self.Изготовление" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ювелир">
+              <PropertyRef Name="ID_ювелира" />
+            </Principal>
+            <Dependent Role="Изготовление">
+              <PropertyRef Name="Ювелир" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Изделия_Металл">
+          <End Role="Металл" Type="Self.Металл" Multiplicity="0..1" />
+          <End Role="Изделия" Type="Self.Изделия" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Металл">
+              <PropertyRef Name="ID_металл" />
+            </Principal>
+            <Dependent Role="Изделия">
+              <PropertyRef Name="Металл" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AlmazEnt" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Заказчики" EntityType="Self.Заказчики" />
+          <EntitySet Name="Изготовление" EntityType="Self.Изготовление" />
+          <EntitySet Name="Изделия" EntityType="Self.Изделия" />
+          <EntitySet Name="Металл" EntityType="Self.Металл" />
+          <EntitySet Name="Ювелир" EntityType="Self.Ювелир" />
+          <AssociationSet Name="FK_Изготовление_Заказчик1" Association="Self.FK_Изготовление_Заказчик1">
+            <End Role="Заказчики" EntitySet="Заказчики" />
+            <End Role="Изготовление" EntitySet="Изготовление" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Изготовление_Изделия" Association="Self.FK_Изготовление_Изделия">
+            <End Role="Изделия" EntitySet="Изделия" />
+            <End Role="Изготовление" EntitySet="Изготовление" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Изготовление_Ювелир" Association="Self.FK_Изготовление_Ювелир">
+            <End Role="Ювелир" EntitySet="Ювелир" />
+            <End Role="Изготовление" EntitySet="Изготовление" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Изделия_Металл" Association="Self.FK_Изделия_Металл">
+            <End Role="Металл" EntitySet="Металл" />
+            <End Role="Изделия" EntitySet="Изделия" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AlmazModelContainer" CdmEntityContainer="AlmazEnt">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AlmazModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Заказчики">
+            <EntityTypeMapping TypeName="AlmazModel.Заказчики">
+              <MappingFragment StoreEntitySet="Заказчики">
+                <ScalarProperty Name="ID_заказчик" ColumnName="ID_заказчик" />
+                <ScalarProperty Name="ФИО_заказчика" ColumnName="ФИО_заказчика" />
+                <ScalarProperty Name="Номер_телефона" ColumnName="Номер_телефона" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Изготовление">
+            <EntityTypeMapping TypeName="AlmazModel.Изготовление">
+              <MappingFragment StoreEntitySet="Изготовление">
+                <ScalarProperty Name="ID_изготовления" ColumnName="ID_изготовления" />
+                <ScalarProperty Name="Изделие" ColumnName="Изделие" />
+                <ScalarProperty Name="Заказчик" ColumnName="Заказчик" />
+                <ScalarProperty Name="Ювелир" ColumnName="Ювелир" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Изделия">
+            <EntityTypeMapping TypeName="AlmazModel.Изделия">
+              <MappingFragment StoreEntitySet="Изделия">
+                <ScalarProperty Name="ID_изделия" ColumnName="ID_изделия" />
+                <ScalarProperty Name="Тип_изделия" ColumnName="Тип_изделия" />
+                <ScalarProperty Name="Металл" ColumnName="Металл" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Металл">
+            <EntityTypeMapping TypeName="AlmazModel.Металл">
+              <MappingFragment StoreEntitySet="Металл">
+                <ScalarProperty Name="ID_металл" ColumnName="ID_металл" />
+                <ScalarProperty Name="Метал" ColumnName="Метал" />
+                <ScalarProperty Name="Цена_за_грамм" ColumnName="Цена за грамм" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ювелир">
+            <EntityTypeMapping TypeName="AlmazModel.Ювелир">
+              <MappingFragment StoreEntitySet="Ювелир">
+                <ScalarProperty Name="ID_ювелира" ColumnName="ID_ювелира" />
+                <ScalarProperty Name="ФИО_ювелира" ColumnName="ФИО_ювелира" />
+                <ScalarProperty Name="Разряд" ColumnName="Разряд" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

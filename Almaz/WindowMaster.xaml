@@ -1,0 +1,34 @@
+﻿<Window x:Class="Almaz.WindowMaster"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Almaz"
+        mc:Ignorable="d"
+        Title="Ювелиры" Height="260" Width="629">
+    <Grid Margin="0,0,0,-6">
+        <DataGrid x:Name="MasterTable" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,0,0" AutoGenerateColumns="False" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left" Width="413" Height="141" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID_ювелира}" Width="30"/>
+                <DataGridTextColumn Header="ФИО ювелира" Binding="{Binding ФИО_ювелира}" Width="200"/>
+                <DataGridTextColumn Header="Разряд" Binding="{Binding Разряд}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить" Click="DeleteMaster"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Изменить" Click="UpdateMaster"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="511,10,0,0" VerticalAlignment="Top" Height="32" Width="96" Click="AddMaster"/>
+        <Button Content="Назад" HorizontalAlignment="Left" Margin="511,60,0,0" VerticalAlignment="Top" Height="32" Width="96" Click="Back"/>
+    </Grid>
+</Window>

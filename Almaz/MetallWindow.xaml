@@ -1,0 +1,20 @@
+﻿<Window x:Class="Almaz.MetallWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Almaz"
+        mc:Ignorable="d"
+        Title="Металлы" Height="236" Width="207">
+    <Grid>
+        <DataGrid x:Name="MetallTable" d:ItemsSource="{d:SampleData ItemCount=5}" Background="{x:Null}" BorderBrush="{x:Null}" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="244" Height="125" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID_металл}"/>
+                <DataGridTextColumn Header="Метал" Binding="{Binding Метал}"/>
+                <DataGridTextColumn Header="Цена за грамм" Binding="{Binding Цена_за_грамм}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Назад" HorizontalAlignment="Center" Margin="0,169,0,0" VerticalAlignment="Top" Height="32" Width="96" Click="Back"/>
+        <Button Content="Добавить" HorizontalAlignment="Center" Margin="0,132,0,0" VerticalAlignment="Top" Height="32" Width="96" Click="Add"/>
+    </Grid>
+</Window>

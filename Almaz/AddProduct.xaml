@@ -1,0 +1,16 @@
+﻿<Window x:Class="Almaz.AddProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Almaz"
+        mc:Ignorable="d"
+        Title="Добавить изделие" Height="178" Width="324">
+    <Grid>
+        <Label Content="Изделие" HorizontalAlignment="Left" Margin="36,34,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="98,38,0,0" TextWrapping="Wrap" Text="{Binding Тип_изделия}" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Металл" HorizontalAlignment="Left" Margin="36,60,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="98,64,0,0" TextWrapping="Wrap" Text="{Binding Металл}" VerticalAlignment="Top" Width="186"/>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="98,87,0,0" VerticalAlignment="Top" Click="AddProd"/>
+    </Grid>
+</Window>

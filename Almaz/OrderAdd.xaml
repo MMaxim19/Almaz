@@ -1,0 +1,20 @@
+﻿<Window x:Class="Almaz.OrderAdd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Almaz"
+        mc:Ignorable="d"
+        Title="Добавление заказа" Height="283" Width="320">
+    <Grid>
+        <Label Content="Изделие" HorizontalAlignment="Left" Margin="24,18,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="86,22,0,0" TextWrapping="Wrap" Text="{Binding Изделие}" VerticalAlignment="Top" Width="188"/>
+        <Label Content="Заказчик" HorizontalAlignment="Left" Margin="24,41,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="86,45,0,0" TextWrapping="Wrap" Text="{Binding Заказчик}" VerticalAlignment="Top" Width="188"/>
+        <Label Content="Ювелир" HorizontalAlignment="Left" Margin="24,64,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="86,68,0,0" TextWrapping="Wrap" Text="{Binding Ювелир}" VerticalAlignment="Top" Width="188"/>
+        <Label Content="Цена" HorizontalAlignment="Left" Margin="24,87,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="86,91,0,0" TextWrapping="Wrap" Text="{Binding Цена}" VerticalAlignment="Top" Width="188"/>
+        <Button Content="Добавить" HorizontalAlignment="Center" Margin="0,153,0,0" Height="32" Width="96" VerticalAlignment="Top" Click="Add"/>
+    </Grid>
+</Window>

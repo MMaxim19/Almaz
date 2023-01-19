@@ -1,0 +1,38 @@
+﻿<Window x:Class="Almaz.WinClient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Almaz"
+        mc:Ignorable="d"
+        Title="Заказчики" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="ClientTable" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,10,228" AutoGenerateColumns="False" Background="{x:Null}" BorderBrush="{x:Null}">
+            <DataGrid.CellStyle>
+                <Style/>
+            </DataGrid.CellStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID_заказчик}" Width="40"/>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding ФИО_заказчика}" Width="200"/>
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding Номер_телефона}" Width="190"/>
+                <DataGridTextColumn Header="Адрес" Binding="{Binding Адрес}" Width="200"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить" Click="DeleteMaster"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Изменить" Click="UpdateMaster"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Назад" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top" Height="32" Width="96" Click="Back"/>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="111,217,0,0" VerticalAlignment="Top" Height="32" Width="96" Click="AddClient"/>
+    </Grid>
+</Window>

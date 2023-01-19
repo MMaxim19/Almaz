@@ -1,0 +1,21 @@
+﻿<Window x:Class="Almaz.ProductsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Almaz"
+        mc:Ignorable="d"
+        Title="Изделия" Height="168" Width="491">
+    <Grid>
+        <DataGrid x:Name="ProductTable" d:ItemsSource="{d:SampleData ItemCount=5}" Background="{x:Null}" BorderBrush="{x:Null}" AutoGenerateColumns="False" Margin="10,0,0,0" HorizontalAlignment="Left" Width="310" Height="132" VerticalAlignment="Center">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID_изделия}" Width="30"/>
+                <DataGridTextColumn Header="Изделие" Binding="{Binding Тип_изделия}" Width="200"/>
+                <DataGridTextColumn Header="Металл" Binding="{Binding Металл1.Метал}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Назад" Width="96" Margin="0,20,20,0" Click="Back" HorizontalAlignment="Right" Height="32" VerticalAlignment="Top"/>
+        <Button Content="Металлы" Width="96" Margin="0,59,20,0" Click="MetallWindow" HorizontalAlignment="Right" Height="32" VerticalAlignment="Top"/>
+        <Button Content="Добавить" Width="96" Margin="0,96,20,0" Click="AddProduct" HorizontalAlignment="Right" Height="32" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
